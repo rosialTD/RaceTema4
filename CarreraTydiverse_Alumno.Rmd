@@ -138,7 +138,9 @@ glimpse(cran)
 
 4. Elige únicamente las variables `ip_id, package, country`
 ```{r}
+library(dplyr)
 
+select(cran, ip_id, package, country)
 
 
 ```
