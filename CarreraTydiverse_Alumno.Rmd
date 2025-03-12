@@ -183,6 +183,8 @@ filter(cran, country %in% c("ES", "PT"))
 8. Elige aquellas descargas cuyo tamaño supera los 100500 bytes desde un sistema operativo  `linux-gnu`.
 ```{r}
 
+filter(cran, size > 100500, r_os == "linux-gnu")
+
 
 
 ```
