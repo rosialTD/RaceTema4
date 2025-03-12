@@ -448,6 +448,12 @@ students_tidy <- students %>% pivot_longer(cols = c(male, female),  names_to = "
 30. Considera el conjunto ´students2´, que es similar al primero pero que se han recogido datos correspondientes a dos grupos, (`male_1, female_1`, etc). Transfórmalo en un conjunto `tidy` añadiendo una columna adicional correspondiente al grupo (llama a la nueva variable `class`)
 ```{r}
 
+library(tidyr)
+library(dplyr)
+
+students2_tidy <- students2 %>%pivot_longer(cols = -grade, names_to = c("sex", "class"),names_pattern = "(male|female)_(\\d)",values_to = "count")  
+
+print(students2_tidy)  
 
 
 
