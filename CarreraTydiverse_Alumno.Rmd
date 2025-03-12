@@ -160,6 +160,7 @@ select(cran, -(date:size))
 ```
 6. Elige aquellos registros en los que se haya descargado el paquete `plotly`, desde un sistema que ejecuta la versión de R 3.5.1
 ```{r}
+filter(cran, package == "plotly", r_version == "3.5.1")
 
 
 ```
