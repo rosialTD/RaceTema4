@@ -649,6 +649,13 @@ print(dt2)
 ```
 43. Importa el vector de fechas almacenado el `dt2`
 ```{r}
+library(lubridate)
+
+
+dt2_imp <- hms(dt2)
+
+dt2_imp
+
 
 ```
 44. Podemos reasingar nuevos valores a una variable fecha/hora con la función `update`
