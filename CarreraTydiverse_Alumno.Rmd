@@ -636,6 +636,13 @@ fecha2
 42. Almacena la cadena `2014-08-23 17:23:02` en la variable `dt1`  e impórtala para que incluya la fecha y la hora,posteriormente importa la cadena `"03:22:14"` (hh:mm:ss)
 ```{r}
 
+library(lubridate)
+
+dt1 <- ymd_hms("2014-08-23 17:23:02")
+print(dt1)
+
+dt2 <- hms("03:22:14")
+print(dt2)
 
 
 
