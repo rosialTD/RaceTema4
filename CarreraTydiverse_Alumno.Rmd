@@ -370,6 +370,11 @@ cran %>%
 ```{r}
 
 
+cran %>%
+  mutate(size_mb = size / 2^20) %>%  
+  filter(size_mb <= 0.5) %>%  
+  arrange(desc(size_mb)) %>% 
+  print()
 
 
 ```
@@ -378,6 +383,11 @@ cran %>%
 
 ```{r}
 
+library(ggplot2)
+
+cran %>%group_by(country) %>%  summarise(total_traffic = sum(size, na.rm = TRUE)) %>%filter(total_traffic > quantile(total_traffic, probs = 0.90)) %>%  arrange(desc(total_traffic)) %>% ggplot(aes(x = reorder(country, -total_traffic), y = total_traffic)) +
+  geom_point() +  labs(x = "País", y = "Tráfico Total (Bytes)", title = "Países con Mayor Tráfico de Descargas") +
+  theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
 
 
 
@@ -392,16 +402,22 @@ cran %>%
  + Representa un diagrama de barras con el flujo de datos, por continente, ordenados de mayor a menor. Expresa el flujo de datos en Terabytes (1Tb=2^40bytes)
  
 ```{r}
+library(readr)  
+code_paises <- read_csv("GeoLite2-Country-Locations-es.csv", locale = locale(encoding = "UTF-8"))
+glimpse(code_paises)
 
+cran <- cran %>%
+  filter(!is.na(country) & country != "")  
+code_paises <- code_paises %>%
+  filter(!is.na(country_iso_code) & country_iso_code != "")  
 
+cran_continentes <- cran %>% inner_join(select(code_paises, country_iso_code, continent_name), by = c("country" = "country_iso_code"))
 
+tráfico_continentes <- cran_continentes %>%group_by(continent_name)%>%summarise(total_TB = sum(size, na.rm = TRUE) / 2^40) %>%arrange(desc(total_TB)) 
 
+library(ggplot2)
 
-
-
-
-
-
+tráfico_continentes %>%ggplot(aes(x = reorder(continent_name, -total_TB), y = total_TB)) +geom_bar(stat = "identity", fill = "steelblue") + labs(x = "Continente", y = "Tráfico Total (TB)", title = "Tráfico de Descargas por Continente") +theme_minimal() +theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
 
 
 
