@@ -620,6 +620,15 @@ date2
 fecha<-'19200102'
 ymd(fecha)
 
+library(lubridate)
+
+fecha1 <- dmy("25081985")
+fecha1
+
+
+fecha2 <- ymd("1920-12-01")  
+fecha2
+
 
 
 
