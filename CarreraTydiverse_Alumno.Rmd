@@ -475,9 +475,15 @@ print(students3_tidy)
 
 ```{r}
 
+library(tidyr)
+library(dplyr)
+library(readr) 
 
+students3_tidy <- students3 %>%
+  pivot_longer(cols = -name,names_to = c("class", "exam"),names_sep = "_",values_drop_na = TRUE) %>%
+  mutate(class = parse_number(class)) 
 
-
+print(students3_tidy)
 
 
 ```
