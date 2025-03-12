@@ -584,7 +584,18 @@ weekday_value <- wday(this_day, label = TRUE, abbr = FALSE)
 39. Guarda el instante actual en una variable llamada `this_moment` con la función `now`
 y muéstralo por pantalla. Usa las funciónes `hour, minute, second` para extraer la información de cada elemento.
 ```{r}
+library(lubridate)
 
+this_moment <- now()
+this_moment
+
+hour_value <- hour(this_moment)
+minute_value <- minute(this_moment)
+second_value <- second(this_moment)
+
+print(paste("Hora:", hour_value))
+print(paste("Minuto:", minute_value))
+print(paste("Segundo:", second_value))
 
 
 ```
