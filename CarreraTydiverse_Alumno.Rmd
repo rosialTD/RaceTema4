@@ -166,6 +166,7 @@ filter(cran, package == "plotly", r_version == "3.5.1")
 ```
 6. Elige aquellas descargas realizadas desde España (ES), con versiones de R superiores a la 3.4.0
 ```{r}
+filter(cran, country == "ES", r_version > "3.4.0")
 
 
 ```
