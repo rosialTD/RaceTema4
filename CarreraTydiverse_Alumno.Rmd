@@ -231,7 +231,8 @@ cran2
 en este orden y almacénalas en `cran3`.
 ```{r}
 
-
+cran3 <- select(cran, ip_id, package, size)
+cran3
 
 ```
 
